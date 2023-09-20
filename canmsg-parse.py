@@ -1,10 +1,10 @@
+import os
 import time
 from azure.iot.device import IoTHubDeviceClient, Message
 import can
 
-CONNECTION_STRING = "HostName=uopsolarcartest001.azure-devices.net;DeviceId=raspberry-pi-solarcar;SharedAccessKey=t0/PkF0TugKeJNCKvBWd7YKOgrpPr0hOM7ZfNy1rA0A=
-"
-DEVICE_ID = "t0/PkF0TugKeJNCKvBWd7YKOgrpPr0hOM7ZfNy1rA0A="
+CONNECTION_STRING = f"HostName=uopsolarcartest001.azure-devices.net;DeviceId=raspberry-pi-solarcar;SharedAccessKey={os.getenv('sharedaccesskey')}"
+DEVICE_ID = os.getenv('deviceid')
 
 def send_sensor_data(data):
     client = IoTHubDeviceClient.create_from_connection_string(CONNECTION_STRING)
